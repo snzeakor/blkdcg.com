@@ -114,26 +114,9 @@ body{
 }
 /* House illustration */
 .h-house{
-  position:absolute;right:0;top:0;bottom:0;
-  z-index:2;width:55%;max-width:760px;
-  overflow:hidden;
-}
-.h-house img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  display:block;
-}
-/* Left-edge fade blends photo into dark background */
-.h-house::before{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to right, var(--dark) 0%, transparent 35%);
-  pointer-events:none;
-}
-/* Bottom fade */
-.h-house::after{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to top, var(--dark) 0%, transparent 30%);
-  pointer-events:none;
+  position:absolute;right:0;top:50%;transform:translateY(-50%);
+  z-index:2;width:52%;max-width:700px;
+  opacity:.92;
 }
 /* Hero content */
 .h-content{
@@ -281,20 +264,6 @@ body{
   padding:80px 5vw;
   display:flex;flex-direction:column;justify-content:center;
 }
-.about-photo{
-  position:relative;overflow:hidden;
-  height:220px;margin-top:32px;
-}
-.about-photo img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 30%;
-  display:block;transition:transform .6s ease;
-}
-.about-photo:hover img{transform:scale(1.04)}
-.about-photo::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top, var(--navy3) 0%, transparent 50%);
-}
 .about-right::before{
   content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
   background:linear-gradient(to bottom,transparent,var(--orange),transparent);
@@ -390,25 +359,7 @@ body{
 .ss-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:rgba(255,255,255,.35);line-height:1;flex-shrink:0}
 .ss-c h4{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
 .ss-c p{font-size:.79rem;color:rgba(255,255,255,.65);line-height:1.7}
-.storm-right{
-  padding:100px 5vw 100px 6vw;
-  background:var(--navy3);
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;
-}
-.storm-right .storm-photo-bg{
-  position:absolute;inset:0;z-index:0;
-}
-.storm-right .storm-photo-bg img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  display:block;
-}
-.storm-right .storm-photo-bg::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg, rgba(4,6,15,.92) 0%, rgba(15,21,38,.82) 60%, rgba(4,6,15,.72) 100%);
-}
-.storm-right > *:not(.storm-photo-bg){position:relative;z-index:1;}
+.storm-right{padding:100px 5vw 100px 6vw;background:var(--navy3);display:flex;flex-direction:column;justify-content:center}
 .ins-title{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;font-weight:500}
 .ins-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
 .ins-b{padding:8px 16px;border:1px solid rgba(242,100,25,.25);font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);transition:all .3s}
@@ -432,22 +383,6 @@ body{
   border-bottom:3px solid transparent;
   transition:border-color .35s;
 }
-.gi-photo{
-  position:absolute;inset:0;z-index:0;
-}
-.gi-photo img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  display:block;
-  transition:transform .6s ease;
-}
-.gi:hover .gi-photo img{transform:scale(1.06)}
-.gi-photo::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(4,6,15,.75) 0%, rgba(4,6,15,.2) 60%, rgba(4,6,15,.1) 100%);
-  transition:opacity .35s;
-}
-.gi:hover .gi-photo::after{background:linear-gradient(to top, rgba(4,6,15,.85) 0%, rgba(4,6,15,.3) 70%, rgba(4,6,15,.2) 100%)}
 .gi:hover{border-bottom-color:var(--orange)}
 .gi.tall{grid-row:1/3}
 .gi-fill{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
@@ -762,13 +697,159 @@ footer{
   <div class="h-rule"></div>
   <div class="h-bg-text">BUILD</div>
 
-  <div class="h-house">
-    <img
-      src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=85&fit=crop&crop=right"
-      alt="Beautiful DFW home with premium roofing"
-      loading="eager"
-    />
-  </div>
+  <!-- LINE-ART HOUSE ILLUSTRATION -->
+  <svg class="h-house" viewBox="0 0 680 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F26419" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#F26419" stop-opacity="0.5"/>
+      </linearGradient>
+      <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#F26419" stop-opacity="0.0"/>
+        <stop offset="50%" stop-color="#F26419" stop-opacity="0.08"/>
+        <stop offset="100%" stop-color="#F26419" stop-opacity="0.0"/>
+      </linearGradient>
+      <filter id="hglow">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+    </defs>
+
+    <!-- Soft glow behind house -->
+    <ellipse cx="340" cy="380" rx="260" ry="180" fill="rgba(242,100,25,0.04)"/>
+
+    <!-- ── MAIN ROOF ── -->
+    <!-- Left slope with highlight -->
+    <line x1="100" y1="220" x2="340" y2="52" stroke="url(#hg1)" stroke-width="4" stroke-linecap="round" filter="url(#hglow)"/>
+    <line x1="580" y1="220" x2="340" y2="52" stroke="url(#hg1)" stroke-width="4" stroke-linecap="round" filter="url(#hglow)"/>
+    <!-- Roof fill -->
+    <polygon points="100,220 340,52 580,220" fill="rgba(242,100,25,0.05)"/>
+    <!-- Soffit / eave line -->
+    <line x1="85" y1="228" x2="595" y2="228" stroke="#F26419" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    <!-- Ridge cap ornament -->
+    <circle cx="340" cy="52" r="7" fill="none" stroke="#F26419" stroke-width="3" opacity="0.9"/>
+    <circle cx="340" cy="52" r="3" fill="#F26419"/>
+
+    <!-- ── ROOF SHINGLES (subtle lines) ── -->
+    <!-- Left side shingle lines -->
+    <line x1="105" y1="215" x2="230" y2="130" stroke="rgba(242,100,25,0.12)" stroke-width="1.5"/>
+    <line x1="115" y1="225" x2="265" y2="110" stroke="rgba(242,100,25,0.09)" stroke-width="1.2"/>
+    <line x1="130" y1="225" x2="295" y2="90" stroke="rgba(242,100,25,0.07)" stroke-width="1"/>
+    <!-- Right side -->
+    <line x1="575" y1="215" x2="450" y2="130" stroke="rgba(242,100,25,0.12)" stroke-width="1.5"/>
+    <line x1="565" y1="225" x2="415" y2="110" stroke="rgba(242,100,25,0.09)" stroke-width="1.2"/>
+    <line x1="550" y1="225" x2="385" y2="90" stroke="rgba(242,100,25,0.07)" stroke-width="1"/>
+
+    <!-- ── LEFT WING ── -->
+    <line x1="100" y1="220" x2="100" y2="400" stroke="#F26419" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+    <!-- Left wing roof -->
+    <line x1="55" y1="260" x2="100" y2="220" stroke="#F26419" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <line x1="55" y1="260" x2="55" y2="400" stroke="#F26419" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+    <line x1="55" y1="400" x2="100" y2="400" stroke="#F26419" stroke-width="3" opacity="0.4"/>
+
+    <!-- ── RIGHT WING ── -->
+    <line x1="580" y1="220" x2="580" y2="400" stroke="#F26419" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="625" y1="260" x2="580" y2="220" stroke="#F26419" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <line x1="625" y1="260" x2="625" y2="400" stroke="#F26419" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+    <line x1="625" y1="400" x2="580" y2="400" stroke="#F26419" stroke-width="3" opacity="0.4"/>
+
+    <!-- ── HOUSE BODY ── -->
+    <rect x="100" y="220" width="480" height="180" fill="rgba(242,100,25,0.04)" stroke="#F26419" stroke-width="3.5"/>
+
+    <!-- Foundation line -->
+    <rect x="82" y="398" width="516" height="10" fill="rgba(242,100,25,0.15)" rx="1"/>
+    <line x1="82" y1="408" x2="598" y2="408" stroke="#F26419" stroke-width="2" opacity="0.4"/>
+
+    <!-- ── CHIMNEY ── -->
+    <rect x="408" y="55" width="38" height="95" fill="rgba(242,100,25,0.1)" stroke="#F26419" stroke-width="3" rx="1"/>
+    <rect x="402" y="50" width="50" height="10" fill="rgba(242,100,25,0.2)" stroke="#F26419" stroke-width="2"/>
+    <!-- Smoke wisps -->
+    <path d="M415,45 C415,35 420,28 418,20 C416,12 422,8 420,0" stroke="rgba(242,100,25,0.25)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M432,42 C432,32 436,26 434,18 C432,10 437,7 436,0" stroke="rgba(242,100,25,0.18)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- ── LEFT DORMER ── -->
+    <polygon points="172,220 210,174 248,220" fill="rgba(242,100,25,0.08)" stroke="#F26419" stroke-width="2.5"/>
+    <rect x="182" y="220" width="56" height="28" fill="rgba(242,100,25,0.08)" stroke="#F26419" stroke-width="2"/>
+    <rect x="190" y="178" width="30" height="26" fill="rgba(242,100,25,0.18)" stroke="#F26419" stroke-width="1.5"/>
+    <!-- Dormer window divider -->
+    <line x1="205" y1="178" x2="205" y2="204" stroke="#F26419" stroke-width="1" opacity="0.5"/>
+    <line x1="190" y1="191" x2="220" y2="191" stroke="#F26419" stroke-width="1" opacity="0.5"/>
+
+    <!-- ── RIGHT DORMER ── -->
+    <polygon points="432,220 470,174 508,220" fill="rgba(242,100,25,0.08)" stroke="#F26419" stroke-width="2.5"/>
+    <rect x="442" y="220" width="56" height="28" fill="rgba(242,100,25,0.08)" stroke="#F26419" stroke-width="2"/>
+    <rect x="450" y="178" width="30" height="26" fill="rgba(242,100,25,0.18)" stroke="#F26419" stroke-width="1.5"/>
+    <line x1="465" y1="178" x2="465" y2="204" stroke="#F26419" stroke-width="1" opacity="0.5"/>
+    <line x1="450" y1="191" x2="480" y2="191" stroke="#F26419" stroke-width="1" opacity="0.5"/>
+
+    <!-- ── WINDOWS (lower) ── -->
+    <!-- Left window -->
+    <rect x="134" y="260" width="70" height="80" fill="rgba(242,100,25,0.12)" stroke="#F26419" stroke-width="2.5" rx="1"/>
+    <line x1="169" y1="260" x2="169" y2="340" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <line x1="134" y1="300" x2="204" y2="300" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <!-- Sill -->
+    <rect x="130" y="338" width="78" height="6" fill="rgba(242,100,25,0.25)" stroke="#F26419" stroke-width="1"/>
+
+    <!-- Center-left window -->
+    <rect x="234" y="260" width="70" height="80" fill="rgba(242,100,25,0.1)" stroke="#F26419" stroke-width="2.5" rx="1"/>
+    <line x1="269" y1="260" x2="269" y2="340" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <line x1="234" y1="300" x2="304" y2="300" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <rect x="230" y="338" width="78" height="6" fill="rgba(242,100,25,0.22)" stroke="#F26419" stroke-width="1"/>
+
+    <!-- ── FRONT DOOR ── -->
+    <rect x="305" y="278" width="70" height="122" fill="rgba(242,100,25,0.09)" stroke="#F26419" stroke-width="3" rx="1"/>
+    <!-- Door arch -->
+    <path d="M305,290 Q340,262 375,290" stroke="#F26419" stroke-width="2" fill="rgba(242,100,25,0.12)"/>
+    <!-- Door handle -->
+    <circle cx="360" cy="340" r="5" fill="none" stroke="#F26419" stroke-width="2" opacity="0.8"/>
+    <!-- Door panel lines -->
+    <rect x="313" y="296" width="24" height="30" fill="none" stroke="rgba(242,100,25,0.4)" stroke-width="1.2" rx="1"/>
+    <rect x="343" y="296" width="24" height="30" fill="none" stroke="rgba(242,100,25,0.4)" stroke-width="1.2" rx="1"/>
+    <!-- Transom window -->
+    <rect x="313" y="264" width="54" height="22" fill="rgba(242,100,25,0.2)" stroke="#F26419" stroke-width="1.5"/>
+    <line x1="340" y1="264" x2="340" y2="286" stroke="#F26419" stroke-width="1" opacity="0.5"/>
+
+    <!-- Center-right window -->
+    <rect x="376" y="260" width="70" height="80" fill="rgba(242,100,25,0.1)" stroke="#F26419" stroke-width="2.5" rx="1"/>
+    <line x1="411" y1="260" x2="411" y2="340" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <line x1="376" y1="300" x2="446" y2="300" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <rect x="372" y="338" width="78" height="6" fill="rgba(242,100,25,0.22)" stroke="#F26419" stroke-width="1"/>
+
+    <!-- Right window -->
+    <rect x="476" y="260" width="70" height="80" fill="rgba(242,100,25,0.12)" stroke="#F26419" stroke-width="2.5" rx="1"/>
+    <line x1="511" y1="260" x2="511" y2="340" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <line x1="476" y1="300" x2="546" y2="300" stroke="#F26419" stroke-width="1.2" opacity="0.5"/>
+    <rect x="472" y="338" width="78" height="6" fill="rgba(242,100,25,0.25)" stroke="#F26419" stroke-width="1"/>
+
+    <!-- ── PORCH / STEPS ── -->
+    <rect x="288" y="398" width="104" height="8" fill="rgba(242,100,25,0.2)" stroke="#F26419" stroke-width="1.5"/>
+    <rect x="278" y="406" width="124" height="7" fill="rgba(242,100,25,0.15)" stroke="#F26419" stroke-width="1.2"/>
+    <rect x="268" y="413" width="144" height="7" fill="rgba(242,100,25,0.1)" stroke="#F26419" stroke-width="1"/>
+
+    <!-- ── MEASUREMENT MARKS (architectural feel) ── -->
+    <line x1="100" y1="435" x2="580" y2="435" stroke="rgba(242,100,25,0.15)" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="100" y1="430" x2="100" y2="440" stroke="rgba(242,100,25,0.3)" stroke-width="1.5"/>
+    <line x1="580" y1="430" x2="580" y2="440" stroke="rgba(242,100,25,0.3)" stroke-width="1.5"/>
+    <text x="336" y="452" font-family="monospace" font-size="11" fill="rgba(242,100,25,0.3)" text-anchor="middle" letter-spacing="2">— 48' FRONTAGE —</text>
+
+    <!-- ── COMPASS ROSE (top-right corner) ── -->
+    <g transform="translate(610,90)" opacity="0.35">
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#F26419" stroke-width="1"/>
+      <line x1="0" y1="-20" x2="0" y2="20" stroke="#F26419" stroke-width="1.5"/>
+      <line x1="-20" y1="0" x2="20" y2="0" stroke="#F26419" stroke-width="1.5"/>
+      <polygon points="0,-22 3,-14 0,-16 -3,-14" fill="#F26419"/>
+      <text x="0" y="-26" font-family="monospace" font-size="9" fill="#F26419" text-anchor="middle">N</text>
+    </g>
+
+    <!-- Scale bar bottom right -->
+    <g transform="translate(540,455)" opacity="0.25">
+      <line x1="0" y1="0" x2="80" y2="0" stroke="#F26419" stroke-width="1.5"/>
+      <line x1="0" y1="-4" x2="0" y2="4" stroke="#F26419" stroke-width="1.5"/>
+      <line x1="80" y1="-4" x2="80" y2="4" stroke="#F26419" stroke-width="1.5"/>
+      <line x1="40" y1="-3" x2="40" y2="3" stroke="#F26419" stroke-width="1"/>
+      <text x="40" y="14" font-family="monospace" font-size="9" fill="#F26419" text-anchor="middle">SCALE 1:48</text>
+    </g>
+  </svg>
 
   <div class="h-content">
     <div class="h-tag">
@@ -841,13 +922,6 @@ footer{
       <p style="font-size:.9rem;color:var(--slate);line-height:1.82;font-style:italic;font-weight:300;">"From the first call to the final walkthrough, Black Diamond was professional, communicative, and delivered exactly what they promised. Best contractor experience I've ever had."</p>
       <p style="margin-top:12px;font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);">— Mark T., Frisco TX</p>
     </div>
-    <div class="about-photo rv d3">
-      <img
-        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=85&fit=crop&crop=center"
-        alt="Black Diamond construction crew on the job"
-        loading="lazy"
-      />
-    </div>
   </div>
 </section>
 
@@ -893,13 +967,6 @@ footer{
     <a href="#cta" class="btn-primary rv d3" style="display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--dark);">Book Inspection <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 3l5 4-5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div>
   <div class="storm-right">
-    <div class="storm-photo-bg">
-      <img
-        src="https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=900&q=85&fit=crop&crop=center"
-        alt="Severe storm damage to roof"
-        loading="lazy"
-      />
-    </div>
     <div class="rv">
       <div class="tag-line"><span class="tag-slash">// </span><span class="tag-txt">We Work With</span></div>
       <h3 style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;">Major Insurers</h3>
@@ -922,37 +989,31 @@ footer{
   </div>
   <div class="gal-grid rv d1">
     <div class="gi tall">
-      <div class="gi-photo">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85&fit=crop&crop=center" alt="Residential roofing" loading="lazy"/>
-      </div>
+      <div class="gi-pat"></div><div class="gi-fill"><div class="gi-hex"></div></div>
       <div class="gi-tag">Residential Roofing</div>
       <div class="gi-ov"><span class="gi-lbl">Complete Roof Replacement — Frisco, TX</span></div>
     </div>
     <div class="gi">
-      <div class="gi-photo">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=85&fit=crop&crop=center" alt="Commercial interior remodel" loading="lazy"/>
-      </div>
+      <div class="gi-pat" style="background-image:repeating-linear-gradient(-45deg,var(--orange) 0,var(--orange) 1px,transparent 0,transparent 50%);background-size:16px 16px;"></div>
+      <div class="gi-fill"><div class="gi-hex" style="width:38%"></div></div>
       <div class="gi-tag">Retail Remodel</div>
       <div class="gi-ov"><span class="gi-lbl">Commercial Interior — Dallas</span></div>
     </div>
     <div class="gi">
-      <div class="gi-photo">
-        <img src="https://images.unsplash.com/photo-1584467541268-b040f83be3fd?w=600&q=85&fit=crop&crop=center" alt="Hardwood floor installation" loading="lazy"/>
-      </div>
+      <div class="gi-pat" style="background-image:repeating-linear-gradient(90deg,var(--orange) 0,var(--orange) 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
+      <div class="gi-fill"><div class="gi-hex" style="width:36%"></div></div>
       <div class="gi-tag">Flooring</div>
       <div class="gi-ov"><span class="gi-lbl">Hardwood Install — Southlake, TX</span></div>
     </div>
     <div class="gi">
-      <div class="gi-photo">
-        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=85&fit=crop&crop=center" alt="Concrete driveway and patio" loading="lazy"/>
-      </div>
+      <div class="gi-pat" style="background-image:radial-gradient(circle,rgba(242,100,25,.2) 1px,transparent 1px);background-size:18px 18px;opacity:.3;"></div>
+      <div class="gi-fill"><div class="gi-hex" style="width:37%"></div></div>
       <div class="gi-tag">Concrete</div>
       <div class="gi-ov"><span class="gi-lbl">Driveway &amp; Patio — Plano, TX</span></div>
     </div>
     <div class="gi">
-      <div class="gi-photo">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=85&fit=crop&crop=center" alt="Storm damage roof restoration" loading="lazy"/>
-      </div>
+      <div class="gi-pat"></div>
+      <div class="gi-fill"><div class="gi-hex" style="width:35%"></div></div>
       <div class="gi-tag">Storm Damage</div>
       <div class="gi-ov"><span class="gi-lbl">Hail Restoration — McKinney, TX</span></div>
     </div>
